@@ -1,0 +1,20 @@
+{
+  "home": {
+    "title": "Great Back End",
+    "placeholder": "Ask me anything...",
+    "quickPrompts": [
+      {
+        "id": "quick-1",
+        "text": "Start a new session"
+      },
+      {
+        "id": "quick-2", 
+        "text": "View history"
+      },
+      {
+        "id": "quick-3",
+        "text": "Open dashboard"
+      }
+    ]
+  }
+}
