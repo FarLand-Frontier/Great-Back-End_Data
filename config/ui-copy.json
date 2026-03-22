@@ -1,4 +1,7 @@
 {
+  "$schema": "./ui-copy.schema.json",
+  "version": "1.0.0",
+  "description": "UI copy contract - source of truth for all UI text",
   "home": {
     "title": "Great Back End",
     "placeholder": "Ask me anything...",
