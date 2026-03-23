@@ -63,6 +63,14 @@
 
 ## Task 3: Cloudflare Access header gate (server-side baseline)
 
+Decision refinement:
+- Identity primary key: `email`
+- Keep `sub` as secondary identity field for future migration
+- Validate `aud` against configured expected audience(s)
+- Unauthenticated requests:
+  - API: deny all (401 JSON)
+  - Page: redirect to `/unauthorized` error page, then countdown jump to auth entry
+
 **Files:**
 - Create: `code/apps/web/src/lib/auth/cloudflareAccess.ts`
 - Create: `code/apps/web/src/middleware.ts`
@@ -85,6 +93,14 @@
 ---
 
 ## Task 4: In-app role gate for admin/copy + sensitive APIs
+
+Decision refinement:
+- Final roles for Day-1 closure:
+  - `developer`: full access including `admin/copy` and `admin/copy/save`, supports backend-triggered copy update push
+  - `user`: business-only routes/APIs (`chat/sessions/dashboard`)
+  - `unauthentic-user`: no API access at all
+- `admin/copy` + `admin/copy/save` are developer-only.
+- Enforcement principle: default deny + explicit allowlist.
 
 **Files:**
 - Create: `code/apps/web/src/lib/auth/rolePolicy.ts`
@@ -150,3 +166,18 @@
 - Auth baseline enforced.
 - Runtime file noise controlled by ignore policy.
 - Plan and milestone docs fully synced.
+
+## Decision Log (2026-03-23 evening)
+
+- Identity keying:
+  - Primary key: `email`
+  - Reserved backup identity: `sub` (for future migration/stability)
+- Unauthorized behavior:
+  - API requests from unauthenticated users: deny all (401 JSON)
+  - Page requests from unauthenticated users: show a dedicated error page first, then countdown redirect to auth entry (no immediate hard redirect)
+- Role model (finalized for Day-1 closure):
+  - `developer`: full access, including `admin/copy` and `admin/copy/save`, plus backend-triggered copy update push capability
+  - `user`: business usage only (`chat/sessions/dashboard`), no copy edit/save/admin-security operations
+  - `unauthentic-user`: no API access at all
+- Enforcement principle:
+  - default deny + explicit allowlist per route/API class.
