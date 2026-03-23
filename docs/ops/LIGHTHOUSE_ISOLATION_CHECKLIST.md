@@ -108,6 +108,11 @@ If isolation fails in production:
 - **Tests**: `code/apps/web/tests/security/instance-policy.test.ts`
 - **API Integration**: `code/apps/web/src/app/api/chat/send/route.ts`
 
+## Day 2 Cloudflare Rollout Reference
+
+- Day 2 baseline freeze doc: `docs/ops/CLOUDFLARE_DAY2_BASELINE.md`
+- Day 2 execution plan: `docs/plans/2026-03-24-great-back-end-day2-cloudflare-rollout-writing-plan.md`
+
 ---
 
 *Last Updated: 2026-03-23*
