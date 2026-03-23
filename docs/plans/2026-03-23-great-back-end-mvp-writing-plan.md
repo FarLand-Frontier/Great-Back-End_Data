@@ -209,3 +209,16 @@ Plan saved. Two execution options:
 
 1. **Subagent-Driven** — dispatch a fresh sub-agent per task, with review between tasks.
 2. **Manual** — execute tasks directly in sequence.
+
+---
+
+## Day-1 Closure Status Update (2026-03-23)
+
+Status: **Closed (tail tasks verified)**
+
+Evidence snapshot:
+- Verification doc: `docs/ops/DAY1_CLOSURE_VERIFICATION.md`
+- Final test command: `pnpm -C apps/web test` → PASS (14 files / 47 tests)
+- Final build command: `pnpm -C apps/web build` → PASS
+- Dev runtime noise check: `git status --porcelain` unchanged before/after short `pnpm -C apps/web dev` run
+- Security/authorization sanity: unauthorized flow + role policy unchanged (`developer` / `user` / `unauthentic-user`)
