@@ -71,3 +71,20 @@ after="$(git status --porcelain)"
 ## 5) Closure statement
 
 Day-1 tail closure verification is complete for required gates (test/build/dev-noise/auth-role sanity). No known Day-1 blockers remain in the verified scope.
+
+## 6) Day-2 Task-4 handoff note (external Access verification)
+
+For Day-2 rollout Task 4, external-access verification is tracked in:
+- `data/docs/ops/DAY2_EXTERNAL_ACCESS_VERIFICATION.md`
+
+Task-4 gate requirements captured there include:
+- Role/API matrix verification:
+  - `unauthentic-user`: all APIs denied
+  - `user`: business APIs only
+  - `developer`: full APIs including `admin/copy` and `admin/copy/save`
+- Unauthenticated page behavior: unauthorized page first, then countdown redirect
+- `aud` mismatch rejection verification
+- Concrete runbook command section with evidence placeholders:
+  - `pnpm -C code/apps/web test`
+  - `pnpm -C code/apps/web build`
+  - external smoke checks
